@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<!-- Show user a welcombe message if logged in-->
+    <div class="container-sm welcome_message">
+        {% if session["user_id"] %}
+            Welcome {{ name }}
+        {% endif %}    
+    </div>
+    <div class="container-sm">
+    <h4 class="display-4"> Recipes </h4>
+<!--Bootstrap grid for displaying recipe cards-->
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!--XCreate a new card for each row returned from DB-->
+        {% for row in recipes %}
+            <div class="col">
+                <div class="card border-dark mb-3">
+                    <div class="recipe_card_image">
+                    <a data-bs-toggle="modal" data-bs-target="#{{row["name"]}}_modal">
+                        <img src="{{row["image"]}}"" class="card-img-top" alt="...">
+                     </a>
+                    </div>
+                    <div class="card-body">
+                    <h5 class="card-title">{{row["name"]}}</h5>
+                    
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+      </div>
+
+      <!--Create a bootsrap modal for each recipe. Visable to user when the click on the appropriate recipe card-->
+     {% for row in recipes %} 
+      <div class="container">
+           
+        <!-- Modal -->
+        <div class="modal fade" id="{{row["name"]}}_modal" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">  
+              <div class="modal-body">
+                <!-- MODAL BODY CONTENT START -->
+                <div class="recipe_card_img_modal">
+                    <img src="{{row["image"]}}"" alt="..." class="recipe_card_img_modal_img">
+                    <h1 class="display-1 recipe_title_overlay">{{row["name"]}}</h1>
+                </div>
+                    <ul class="list-group list-group-flush py-2">
+                            {% for ingredient in row["ingredients"] %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center fw-light fs-6"> {{ingredient}}</li>
+                            {% endfor %}
+                    </ul>
+                    <div>
+                        <ol class="list-group list-group-numbered"></ul>
+                    {% for step in row["steps"] %}
+                        <li class="list-group-item  list-group-item-primary  d-flex align-items-start"> {{step}}</li>
+                    {% endfor %}
+                    </ol>
+                    </div>
+                <!-- MODAL BODY CONTENT END -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       {% endfor %} 
+      
+
+
+    </div>
+    
+{% endblock %}

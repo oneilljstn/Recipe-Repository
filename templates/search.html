@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+  
+    <div class="container-sm">
+    <h4 class="display-4"> Recipes </h4>
+    
+    <input id="search_name" autocomplete="off" autofocus placeholder="Search name" type="text">
+    <input id="search_ing" autocomplete="off" autofocus placeholder="Search ingredient" type="text">
+
+    <div class="container-sm">
+        <ul class="recipe_list"></ul>
+    </div>
+    <!--Create an empty bootstrap grid to later fill with cards based on search queries-->
+    <div class="row row-cols-1 row-cols-md-2 g-4 recipe__grid">
+        <!-- HTML rendered from javascript will go here -->
+    </div>
+
+ 
+
+    <script>
+        /**
+         * Returns the HTML to render a recipe card given the name and image location of a recipe
+         * */
+        function gen_card_html(name, image) {      
+            return (`<div class="col"><div class="card border-dark mb-3"><div class="recipe_card_image"><a data-bs-toggle="modal" data-bs-target=""><img src="${image}" class="card-img-top card__img" alt="..."></a></div><div class="card-body"><h5 class="card-title">${name}</h5></div></div></div>`);      
+        }
+
+//TODO Combine the two searches into one query that can take multuiple terms
+
+        // script for searching by recipe name
+        let input = document.querySelector('#search_name');
+            input.addEventListener('input', async function () {
+                // /filter selects recipes from the db that have the search term in the name 
+                let response = await fetch('/filter?q=' + input.value);
+                let recipes = await response.json();
+                let html = '';
+                const grid = document.querySelector(".recipe__grid");
+                //For each recipe returned, render a new card html and add it to the html variable
+                for (let id in recipes) {
+                    let name = recipes[id].name;
+                    let img = recipes[id].image;
+                    html = html + gen_card_html(name, img);
+                }
+                grid.innerHTML = html;
+            });
+
+        // script for searching by ingredient name. performs the same functions as above but instead uses /filter_ingredient to return matches to ingredient names
+        let input_ing = document.querySelector('#search_ing');
+        input_ing.addEventListener('input', async function () {
+            let response = await fetch('/filter_ingredients?q=' + input_ing.value);
+            let recipes = await response.json();
+            let html = '';
+            const grid = document.querySelector(".recipe__grid");
+            for (let id in recipes) {
+                let name = recipes[id].name;
+                let img = recipes[id].image;
+                html = html + gen_card_html(name, img);
+            }
+            grid.innerHTML = html;
+        });
+
+    </script>
+    
+{% endblock %}

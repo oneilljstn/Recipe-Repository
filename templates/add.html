@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add New Recipe
+{% endblock %}
+
+{% block main %}
+    
+    <h4> Add new reicpe </h4>
+    
+    <div class="container-md">
+    
+        <form class="mb-3"  action="/add" method="post"  enctype=multipart/form-data name="add_recipe" id="add_recipe">
+            
+            <div class="row mb-3">
+                <label for="recipe_name" class="col-sm-2 col-form-label">Recipe name</label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="recipe_name" name="recipe_name">
+                </div>
+            </div>   
+
+
+            <div class="row mb-3">
+                    <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+                    <div class="col-auto">
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="duration_h" name="duration_h" min="0"> 
+                                <label for="duration_h">Hours</label>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" id="duration_m" name="duration_m" min="0">
+                                <label for="duration_m">Minutes</label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+     
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+
+                <div class="col-auto">
+                    <input type="file" class="form-control" id="image" name="image" >
+                </div>
+            </div>
+            <div class="row mb-3">
+       
+                    <label for="meal_type" class="col-sm-2 col-form-label">Meal type</label>
+
+                <div class="col-auto">
+                    <div class="form-check">
+                    <input type="radio" class="form-check-input" id="meal_type" value="Breakfast" name="meal_type">
+                    <label class="form-check-label" for="meal_type">
+                        Breakfast
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="meal_type" value="Lunch/Dinner" name="meal_type">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Lunch/Dinner
+                    </label>
+                </div>
+                    <div class="form-check">
+                    <input type="radio" class="form-check-input" id="meal_type" value="Dessert" name="meal_type">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Dessert
+                    </label>
+                </div>
+                    <div class="form-check">
+                    <input type="radio" class="form-check-input" id="meal_type" value="Other" name="meal_type">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Other
+                    </label>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row g-3 align-items-center py-2">
+                <div class="col-auto">
+                    <label for="carbs" class="form-label">Carbs</label>
+                </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" id="carbs" min="1" name="carbs" >
+                </div>
+            </div>
+            <div class="row g-3 align-items-center py-2">
+                <div class="col-auto">
+                    <label for="protein" class="form-label">Protein</label>
+                </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" id="protein" min="1" name="protein">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center py-2">
+                <div class="col-auto">
+                    <label for="fat" class="form-label">Fat</label>
+                </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" id="fat" min="1" name="fat">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center py-2">
+                <div class="col-auto">
+                    <label for="calories" class="form-label">Calories</label>
+                </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" id="calories" min="1" name="calories">
+                </div>
+            </div> -->
+
+            <div class="row mb-3">
+                
+                    <label for="calories" class="col-sm-2 col-form-label">Ingredients</label>
+               
+                <div class="col-auto">
+                    <textarea id="ingredients" name="ingredients" form="add_recipe" placeholder="Each ingredient on a new line" style="height: 100px; width: 300px"></textarea>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+           
+                    <label for="calories" class="col-sm-2 col-form-label">Method</label>
+               
+                <div class="col-auto">
+                    <textarea id="steps" name="steps" form="add_recipe" placeholder="Each step on a new line" style="height: 100px; width: 300px"></textarea>
+                </div>
+            </div>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
+        
+           
+
+
+
+
+
+            
+           
+        </form>
+
+        </div>
+    
+{% endblock %}

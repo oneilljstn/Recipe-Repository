@@ -1,0 +1,78 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+.transaction__Sale {
+    background-color: #f8d7da;
+}
+.transaction__Buy {
+    background-color: #d1e7dd;
+}
+
+.recipe_card_image {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+.recipe_card_img img {
+    position: relative;
+    margin: -50% auto;/* virtualy height needed turn don to zero */
+    width: 100%;
+    height:auto;
+    vertical-align: middle;
+}
+ 
+.recipe_card_img_modal {
+    height: 400px;
+    overflow: hidden; 
+    display: flex;
+    position: relative;
+    align-items: center;
+    
+    
+}
+.recipe_card_img_modal_img {
+    display: block;
+    height: auto;
+    object-fit: contain;
+    -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+    filter: blur(5px) brightness(80%) contrast(150%);
+
+}
+
+
+.recipe_title_overlay {
+    font-family: 'Niconne', cursive;
+    font-size: 15vw;
+    color:#d1e7dd;
+    position: absolute; 
+    bottom: 0; 
+    padding: 20px;
+    text-align: center;
+  }
+  
+
+
+
+
+
